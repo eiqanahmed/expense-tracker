@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Text, Input, Button, VStack, HStack, Box } from '@chakra-ui/react'
 
-const AddTransaction = () => {
+const AddTransaction = ({ fetchTransactions }) => {
   
   const [item, setItem] = useState();
   const [value, setValue] = useState();
@@ -14,30 +14,29 @@ const AddTransaction = () => {
     axios.post("http://localhost:3001/createTransaction", { item, value })
     .then((transaction) => {
       console.log(transaction);
+      fetchTransactions();
     }).catch(err => console.log(err));
   }
     
   // border="2px solid black"
 
   return (
-    <div>
-      <Box mt="4rem" align='center'>
-        <VStack justifyContent='center' width='70%' spacing={6}>
-          <HStack>
-            <Text>Item: </Text>
+    <>
+        <VStack mt="4rem" alignItems="flex-start" justifyContent='center' width='70%' spacing={6}>
+          <HStack ml="10%">
+            <Text fontSize='1xl'>Item: </Text>
             <Input ml='0.5rem' placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
           </HStack>
-          <HStack>
-            <Text>Value:</Text>
-            <Input placeholder='20' size='md'  onChange={(e) => setValue(e.target.value)}/>
+          <HStack ml="10%">
+            <Text fontSize='1xl'>Value:</Text>
+            <Input placeholder='20' size='md' onChange={(e) => setValue(e.target.value)}/>
           </HStack>
-          <Button ml="2.5rem" onClick={Submit} colorScheme='teal' variant='solid'>
+          <Button ml="17.5%" onClick={Submit} colorScheme='teal' variant='solid'>
               Add Transaction
           </Button>
         </VStack>
-      </Box>
       
-    </div>
+    </>
   )
 }
 
