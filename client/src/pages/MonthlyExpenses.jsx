@@ -34,7 +34,7 @@ const currentMonth = monthNames[currentMonthIndex];
   return (
     <div>
         <AddTransaction />
-        <Text>Expenses for {currentMonth}:</Text>
+        <Text >Expenses for {currentMonth}:</Text>
 
       
     </div>
