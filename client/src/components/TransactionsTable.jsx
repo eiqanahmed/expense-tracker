@@ -87,7 +87,13 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
                   <Td textAlign="center">{transaction.value}</Td>
                   <Td textAlign="center">{currDate(transaction.date)}</Td>
                   <Td textAlign="center">
-                    <Button colorScheme="red" onClick={() => del(transaction._id)}>
+                  <Button
+                      colorScheme="white"
+                      variant="outline"
+                      borderColor="black"
+                      _hover={{ bg: "red", color: "white", borderColor: "red" }}
+                      onClick={() => del(transaction._id)}
+                    >
                       Delete
                     </Button>
                   </Td>

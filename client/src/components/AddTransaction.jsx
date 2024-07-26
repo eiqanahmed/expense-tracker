@@ -31,7 +31,7 @@ const AddTransaction = ({ fetchTransactions }) => {
           </HStack>
           <HStack ml="10%">
             <Text fontSize='1xl'>Value($):</Text>
-            <Input placeholder='20' size='md' width="65%" onChange={(e) => setValue(e.target.value)}/>
+            <Input placeholder='-20' size='md' width="65%" onChange={(e) => setValue(e.target.value)}/>
           </HStack>
           <Button ml="17.5%" onClick={Submit} colorScheme='teal' variant='solid'>
               Add Transaction
