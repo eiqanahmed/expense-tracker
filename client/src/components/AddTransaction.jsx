@@ -26,12 +26,12 @@ const AddTransaction = ({ fetchTransactions }) => {
     <>
         <VStack mt="4rem" alignItems="flex-start" justifyContent='center' width='70%' spacing={6}>
           <HStack ml="10%">
-            <Text fontSize='1xl'>Item: </Text>
-            <Input ml='0.5rem' placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
+            <Text ml="4%" fontSize='1xl'>Item: </Text>
+            <Input ml='7.5%' placeholder='Book' size='md' width="120%" onChange={(e) => setItem(e.target.value)}/>
           </HStack>
           <HStack ml="10%">
-            <Text fontSize='1xl'>Value:</Text>
-            <Input placeholder='20' size='md' onChange={(e) => setValue(e.target.value)}/>
+            <Text fontSize='1xl'>Value($):</Text>
+            <Input placeholder='20' size='md' width="65%" onChange={(e) => setValue(e.target.value)}/>
           </HStack>
           <Button ml="17.5%" onClick={Submit} colorScheme='teal' variant='solid'>
               Add Transaction

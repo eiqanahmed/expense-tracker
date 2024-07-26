@@ -26,6 +26,16 @@ app.post("/createTransaction", async (req, res) => {
     res.json(transaction);
 })
 
+app.delete('/deleteTransaction/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      await TransactionModel.findByIdAndDelete(id);
+      res.status(200).send({ message: 'Transaction deleted successfully' });
+    } catch (error) {
+      res.status(500).send({ message: 'Error deleting transaction', error });
+    }
+  });
+
 
 app.listen(3001, () => {
     console.log("Server is running");

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Text, Input, Button, VStack, Box, Flex, TableContainer, Table, Thead, Th, Tr, Td, Tbody } from '@chakra-ui/react'
 
-const TransactionsTable = ({ transactions }) => {
+const TransactionsTable = ({ transactions, fetchTransactions }) => {
 
   const currentDate = new Date();
 
@@ -39,7 +39,7 @@ const TransactionsTable = ({ transactions }) => {
     allTransactions.forEach((transaction) => {
         const curr = new Date();
         const d = new Date(transaction.date);
-        if (d.getMonth() == curr.getMonth()) {
+        if (d.getMonth() === curr.getMonth()) {
             arr.push(transaction);
         }
     }
@@ -49,6 +49,20 @@ const TransactionsTable = ({ transactions }) => {
   }
 
   const currs = currTransactions(transactions);
+
+  let total = 0;
+  currs.forEach((transaction) => {
+    total += Number(transaction.value);
+  })
+
+  const del = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/deleteTransaction/${id}`);
+      fetchTransactions();
+    } catch (err) {
+      console.error('Error deleting transaction:', err);
+    }
+  };
 
   // console.log(currs);
 
@@ -61,8 +75,9 @@ const TransactionsTable = ({ transactions }) => {
             <Thead>
               <Tr>
                 <Th textAlign="center">Item</Th>
-                <Th textAlign="center">Transaction Value</Th>
+                <Th textAlign="center">Transaction Value ($)</Th>
                 <Th textAlign="center">Date Added</Th>
+                <Th></Th>
               </Tr>
             </Thead>
                 <Tbody>
@@ -71,11 +86,17 @@ const TransactionsTable = ({ transactions }) => {
                   <Td textAlign="center">{transaction.item}</Td>
                   <Td textAlign="center">{transaction.value}</Td>
                   <Td textAlign="center">{currDate(transaction.date)}</Td>
+                  <Td textAlign="center">
+                    <Button colorScheme="red" onClick={() => del(transaction._id)}>
+                      Delete
+                    </Button>
+                  </Td>
                 </Tr>
               ))}
                 </Tbody>
             </Table>
         </TableContainer>
+        <Text mb="2%" fontSize='2xl' ml="6.2%">Total for {currentMonth}: ${total}</Text>
       </VStack>
     </>
   )

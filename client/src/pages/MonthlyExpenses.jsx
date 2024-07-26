@@ -25,7 +25,7 @@ const MonthlyExpenses = () => {
   return (
     <>
         <AddTransaction fetchTransactions={fetchTransactions} />
-        <TransactionsTable transactions={transactions} />
+        <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
         
 
       
