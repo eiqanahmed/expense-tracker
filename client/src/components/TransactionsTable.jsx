@@ -20,6 +20,37 @@ const TransactionsTable = ({ transactions }) => {
   // Get the name of the current month
   const currentMonth = monthNames[currentMonthIndex];
 
+  const currDate = (date) => {
+    const today = new Date(date);
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const formattedToday = dd + '/' + mm + '/' + yyyy;
+    return formattedToday;
+
+  }
+
+  const currTransactions = (allTransactions) => {
+    let arr = [];
+    allTransactions.forEach((transaction) => {
+        const curr = new Date();
+        const d = new Date(transaction.date);
+        if (d.getMonth() == curr.getMonth()) {
+            arr.push(transaction);
+        }
+    }
+    
+    )
+    return arr;
+  }
+
+  const currs = currTransactions(transactions);
+
+  // console.log(currs);
 
   return (
     <>
@@ -31,20 +62,17 @@ const TransactionsTable = ({ transactions }) => {
               <Tr>
                 <Th textAlign="center">Item</Th>
                 <Th textAlign="center">Transaction Value</Th>
+                <Th textAlign="center">Date Added</Th>
               </Tr>
             </Thead>
                 <Tbody>
-                    {
-                        transactions.map(transaction => {
-                            return <>
-                                <Tr>
-                                    <Td textAlign="center">{transaction.item}</Td>
-                                    <Td textAlign="center">{transaction.value}</Td>
-                                </Tr>
-                            </>
-                        })
-
-                    }
+                {currs.map((transaction, index) => (
+                <Tr key={transaction._id || index}>
+                  <Td textAlign="center">{transaction.item}</Td>
+                  <Td textAlign="center">{transaction.value}</Td>
+                  <Td textAlign="center">{currDate(transaction.date)}</Td>
+                </Tr>
+              ))}
                 </Tbody>
             </Table>
         </TableContainer>

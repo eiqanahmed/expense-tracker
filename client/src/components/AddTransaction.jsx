@@ -10,8 +10,10 @@ const AddTransaction = ({ fetchTransactions }) => {
 
   // Display data from database since the beginning of the current month
 
+  const date = new Date();
+
   const Submit = () => {
-    axios.post("http://localhost:3001/createTransaction", { item, value })
+    axios.post("http://localhost:3001/createTransaction", { item, value, date })
     .then((transaction) => {
       console.log(transaction);
       fetchTransactions();

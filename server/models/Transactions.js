@@ -8,6 +8,10 @@ const TransactionSchema = new mongoose.Schema({
     value: {
         type: Number,
         required: true
+    }, 
+    date: {
+        type: Date,
+        required: true
     }
 })
 
