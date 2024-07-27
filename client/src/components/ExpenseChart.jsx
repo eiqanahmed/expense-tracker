@@ -18,10 +18,10 @@ const ExpenseChart = ({ data }) => {
   const transformData = (data) => {
     const categoryTotals = data.reduce((acc, item) => {
       const { category, value } = item;
-      if (!acc[category]) {
-        acc[category] = 0;
+      if (!acc[category.toUpperCase()]) {
+        acc[category.toUpperCase()] = 0;
       }
-      acc[category] -= value;
+      acc[category.toUpperCase()] -= value;
       return acc;
     }, {});
 

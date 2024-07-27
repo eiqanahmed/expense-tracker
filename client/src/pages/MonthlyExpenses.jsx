@@ -55,7 +55,7 @@ const MonthlyExpenses = () => {
     <>
       <Text fontSize="4xl" ml="6%" mt="3%" textAlign="left" fontWeight="bold">Monthly Expenses</Text>
       <Box mt="3%" ml="6%" width="45%">
-        <Text mt="-2%" textAlign="left" fontSize="1xl">You can track your monthly expenses on this page. Use negative values to input expenses, and positive values to input revenues (e.g. income). Be sure to enter a valid category; all valid categories are listed below. </Text>
+        <Text mt="-3.5%" textAlign="left" fontSize="1xl">You can track your monthly expenses on this page. Use negative values to input expenses, and positive values to input revenues (e.g. income). Be sure to enter a valid category; all valid categories are listed below. </Text>
         <HStack mt="3%" align="left">
           <VStack align="left">
             <Text textAlign="left">Expenses:</Text>
