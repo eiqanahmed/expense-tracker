@@ -70,12 +70,14 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
     <>
       <VStack alignItems="flex-start" mt="5%" width="100%" >
         <Text mb="2%" fontSize='2xl' ml="6.2%"> Expenses for {currentMonth}:</Text>
+        <Text mt="-2.5%" mb="2%" ml="6.2%" fontSize="1xl">(Input negative values for expenses and positive values for revenues)</Text>
         <TableContainer width="50%" ml="6.2%" mb="4%">
           <Table size="md" mx="auto" variant="simple" width="100%">
             <Thead>
               <Tr>
                 <Th textAlign="center">Item</Th>
                 <Th textAlign="center">Transaction Value ($)</Th>
+                <Th textAlign="center">Category</Th>
                 <Th textAlign="center">Date Added</Th>
                 <Th></Th>
               </Tr>
@@ -85,6 +87,7 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
                 <Tr key={transaction._id || index}>
                   <Td textAlign="center">{transaction.item}</Td>
                   <Td textAlign="center">{transaction.value}</Td>
+                  <Td textAlign="center">{transaction.category.toUpperCase()}</Td>
                   <Td textAlign="center">{currDate(transaction.date)}</Td>
                   <Td textAlign="center">
                   <Button

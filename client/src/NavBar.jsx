@@ -20,9 +20,6 @@ const Navbar = () => {
           <Link as={RouterLink} to="/monthly-expenses" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
             Monthly Expenses
           </Link>
-          <Link as={RouterLink} to="/daily-spending" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
-            Daily Spending
-          </Link>
           <Link as={RouterLink} to="/history" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
             Expenses History
           </Link>
