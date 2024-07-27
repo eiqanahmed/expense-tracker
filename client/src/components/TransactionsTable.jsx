@@ -104,7 +104,6 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
                 </Tbody>
             </Table>
         </TableContainer>
-        <Text mb="2%" fontSize='2xl' ml="6.2%">Total for {currentMonth}: ${total}</Text>
       </VStack>
     </>
   )
