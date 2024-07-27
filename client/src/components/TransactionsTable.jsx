@@ -69,9 +69,8 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
   return (
     <>
       <VStack alignItems="flex-start" mt="5%" width="100%" >
-        <Text mb="2%" fontSize='2xl' ml="6.2%"> Expenses for {currentMonth}:</Text>
-        <Text mt="-2.5%" mb="2%" ml="6.2%" fontSize="1xl">(Input negative values for expenses and positive values for revenues)</Text>
-        <TableContainer width="50%" ml="6.2%" mb="4%">
+        <Text mb="2%" fontSize='2xl' ml="6.2%"> Transactions made in {currentMonth}:</Text>
+        <TableContainer width="55%" ml="6.2%" mb="4%">
           <Table size="md" mx="auto" variant="simple" width="100%">
             <Thead>
               <Tr>

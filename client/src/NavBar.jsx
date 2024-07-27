@@ -21,7 +21,7 @@ const Navbar = () => {
             Monthly Expenses
           </Link>
           <Link as={RouterLink} to="/history" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
-            Expenses History
+            Transaction History
           </Link>
         </HStack>
         <Button onClick={toggleColorMode} ml={4}>
