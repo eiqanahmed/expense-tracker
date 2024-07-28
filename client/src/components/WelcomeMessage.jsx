@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Text, Input, Button, VStack, HStack, Box, Flex } from '@chakra-ui/react';
 
 const WelcomeMessage = ({ transactions }) => {
@@ -46,7 +44,7 @@ const WelcomeMessage = ({ transactions }) => {
     <Box align="center" mt="10%">
       <Text fontSize="4xl" fontWeight="bold">Welcome to your Expense Tracker! </Text>
         <HStack justifyContent="center" alignItms="center">
-          <Text fontSize="1.25rem">Your total expenses for {currentMonth} so far are: </Text>
+          <Text fontSize="1.25rem">Your total profit in {currentMonth} so far is: </Text>
           <Text fontSize="1.25rem" color="teal">${total}</Text>
         </HStack>
     </Box>
