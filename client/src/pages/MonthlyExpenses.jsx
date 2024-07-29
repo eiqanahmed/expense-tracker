@@ -79,7 +79,7 @@ const MonthlyExpenses = () => {
       <Box mt="-1%">
         <AddTransaction fetchTransactions={fetchTransactions} />
         <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
-        <Box align="center" ml="65%" mt="-65%">
+        <Box align="center" ml="65%" mt="-69%">
           <Text mb="-3%" fontSize="2xl">Your total expenses for {currentMonth} are: ${expensesTotal}</Text>
           <ExpenseChart data={transactions}/>
         </Box>
