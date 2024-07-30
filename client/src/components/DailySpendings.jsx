@@ -21,13 +21,13 @@ const DailySpendings = ({ data }) => {
       if (!acc[day]) {
         acc[day] = 0;
       }
-      acc[day] += item.value;
+      acc[day] -= item.value;
       return acc;
     }, {});
 
     return daysArray.map(day => ({
       date: `${monthIndex + 1}/${day}/${year}`,
-      Profit: dailyTotals[day] || 0,
+      Expenses: dailyTotals[day] || 0,
     }));
   };
 
@@ -35,9 +35,15 @@ const DailySpendings = ({ data }) => {
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
+  let expensesData = [];
+  data.forEach(p => {
+    if (p.value < 0) {
+      expensesData.push(p);
+    }
+  })
 
   const currentMonth = monthNames[monthIndex];
-  const transformedData = transformData(data);
+  const transformedData = transformData(expensesData);
 
   const currTransactions = (allTransactions) => {
     return allTransactions.filter(transaction => {
@@ -50,22 +56,25 @@ const DailySpendings = ({ data }) => {
 
   let total = 0;
   currs.forEach(transaction => {
-    total += Number(transaction.value);
+    if (transaction.value < 0) {
+    total -= Number(transaction.value);
+    }
   });
 
   const day = currentDate.getDate();
-  let average = Math.round(total / Number(day));
+  let average1 = total / Number(day);
+  let average = average1.toFixed(2);
 
   return (
     <>
-      <Text mb="2%">On average, your daily profit has been ${average} in {currentMonth} so far.</Text>
+      <Text mb="2%">On average, your daily expenses have been ${average} in {currentMonth} so far.</Text>
       <BarChart width={600} height={300} data={transformedData}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="Profit" fill="#38B2AC" />
+        <Bar dataKey="Expenses" fill="#38B2AC" />
       </BarChart>
     </>
   );
