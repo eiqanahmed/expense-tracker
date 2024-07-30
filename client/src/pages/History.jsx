@@ -42,6 +42,7 @@ const History = () => {
   return (
     <VStack mt="-1%" ml="4.75%" spacing={4} align="start" p={5}>
       <Text color="#319795" fontSize="4xl"  mt="3%" fontWeight="bold">Transaction History</Text>
+      <Text mb="2.5%">This page displays all your past financial transactions by month and year, providing a clear overview of your spending history.</Text>
       {Object.keys(groupedTransactions).map(monthYear => (
         <Box mb="6%" key={monthYear} width="100%">
           <Text fontSize="xl" mb={4}>{monthYear}</Text>
