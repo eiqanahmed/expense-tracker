@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTransaction from "../components/AddTransaction";
+import AddTransaction from "./AddTransaction";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Text, Input, Button, VStack, Box, Flex, TableContainer, Table, Thead, Th, Tr, Td, Tbody } from '@chakra-ui/react'
