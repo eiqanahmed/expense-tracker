@@ -70,12 +70,12 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
     <>
       <VStack alignItems="flex-start" mt="5%" width="100%" >
         <Text mb="2%" fontSize='2xl' ml="6.2%"> Transactions made in {currentMonth}:</Text>
-        <TableContainer width="55%" ml="6.2%" mb="4%">
+        <TableContainer width="49%" ml="6.2%" mb="4%">
           <Table size="md" mx="auto" variant="simple" width="100%">
             <Thead>
               <Tr>
                 <Th textAlign="center">Item</Th>
-                <Th textAlign="center">Transaction Value ($)</Th>
+                <Th textAlign="center">Value ($)</Th>
                 <Th textAlign="center">Category</Th>
                 <Th textAlign="center">Date Added</Th>
                 <Th></Th>
@@ -85,7 +85,7 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
                 {currs.map((transaction, index) => (
                 <Tr key={transaction._id || index}>
                   <Td textAlign="center">{transaction.item}</Td>
-                  <Td textAlign="center">{transaction.value}</Td>
+                  <Td textAlign="center">{transaction.value.toFixed(2)}</Td>
                   <Td textAlign="center">{transaction.category.toUpperCase()}</Td>
                   <Td textAlign="center">{currDate(transaction.date)}</Td>
                   <Td textAlign="center">

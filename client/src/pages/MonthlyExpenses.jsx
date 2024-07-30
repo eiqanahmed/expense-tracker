@@ -80,11 +80,11 @@ const MonthlyExpenses = () => {
         <AddTransaction fetchTransactions={fetchTransactions} />
         <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
         <Box align="center" ml="65%" mt="-69%">
-          <Text mb="-3%" fontSize="2xl">Your total expenses for {currentMonth} are: ${expensesTotal}</Text>
+          <Text mb="-3%" fontSize="2xl">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
           <ExpenseChart data={transactions}/>
         </Box>
         <Box mt="7%" mb="5%" align="center" ml="65%">
-          <Text mb="-3%" fontSize="2xl"> Your total revenues for {currentMonth} are: ${revenueTotal}</Text>
+          <Text mb="-3%" fontSize="2xl"> Your total revenues for {currentMonth} are: ${revenueTotal.toFixed(2)}</Text>
           <RevenueChart data={transactions} />
         </Box>
       </Box>
