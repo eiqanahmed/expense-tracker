@@ -11,16 +11,16 @@ const Navbar = () => {
   const color = useColorModeValue('gray.800', 'white');
 
   return (
-    <Box bg={bg} px={4} boxShadow="sm">
+    <Box bg={bg} px={4} boxShadow="sm" >
       <Flex h={16} alignItems="center" justifyContent="center">
         <HStack spacing={12} alignItems="center" mx="auto">
-          <Link as={RouterLink} to="/" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
+          <Link as={RouterLink} to="/" px={2} py={1} width="11rem" rounded="md" _hover={{textDecoration: 'none', bg: '#4FD1C5' }}>
             Home
           </Link>
-          <Link as={RouterLink} to="/monthly-expenses" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
+          <Link as={RouterLink} width="11rem" to="/monthly-expenses" px={2} py={1} rounded="md" _hover={{textDecoration: 'none', bg: '#4FD1C5' }}>
             Monthly Expenses
           </Link>
-          <Link as={RouterLink} to="/history" px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'gray.200' }}>
+          <Link as={RouterLink} width="11rem" to="/history" px={2} py={1} rounded="md" _hover={{textDecoration: 'none', bg: '#4FD1C5' }}>
             Transaction History
           </Link>
         </HStack>

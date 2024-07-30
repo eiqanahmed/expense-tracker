@@ -53,7 +53,7 @@ const MonthlyExpenses = () => {
 
   return (
     <>
-      <Text fontSize="4xl" ml="6%" mt="3%" textAlign="left" fontWeight="bold">Monthly Expenses</Text>
+      <Text color="#319795" fontSize="4xl" ml="6%" mt="3%" textAlign="left" fontWeight="bold">Monthly Expenses</Text>
       <Box mt="3%" ml="6%" width="45%">
         <Text mt="-2%" textAlign="left" fontSize="1xl">You can track your monthly expenses on this page. Use negative values to input expenses, and positive values to input revenues (e.g. income). Be sure to enter a valid category; all valid categories are listed below. </Text>
         <HStack mt="3%" align="left">
@@ -80,15 +80,15 @@ const MonthlyExpenses = () => {
         <AddTransaction fetchTransactions={fetchTransactions} />
         <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
         <Box align="center" ml="65%" mt="-69%">
-          <Text mb="-3%" fontSize="2xl">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
+          <Text mb="-3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
           <ExpenseChart data={transactions}/>
         </Box>
         <Box mt="7%" mb="5%" align="center" ml="65%">
-          <Text mb="-3%" fontSize="2xl"> Your total revenues for {currentMonth} are: ${revenueTotal.toFixed(2)}</Text>
+          <Text mb="-3%" fontSize="1.25rem"> Your total revenues for {currentMonth} are: ${revenueTotal.toFixed(2)}</Text>
           <RevenueChart data={transactions} />
         </Box>
       </Box>
-        
+      
 
       
     </>

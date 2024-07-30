@@ -1,9 +1,11 @@
 import { extendTheme } from '@chakra-ui/react'
+import '@fontsource/open-sans/400.css'; // Import the font styles
+import '@fontsource/raleway/700.css'; // Import the font styles
 
 const theme = extendTheme({
   fonts: {
-    heading: `'Heading Font Name', sans-serif`,
-    body: `'Body Font Name', sans-serif`,
+    heading: `'Open Sans', sans-serif`,
+    body: `'Open Sans', sans-serif`,
   },
 })
 

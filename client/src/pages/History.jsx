@@ -10,7 +10,7 @@ import {
   Tr,
   Th,
   Td,
-  TableContainer,
+  TableContainer, Center
 } from '@chakra-ui/react';
 
 const groupTransactionsByMonthAndYear = (transactions) => {
@@ -41,12 +41,13 @@ const History = () => {
 
   return (
     <VStack mt="-1%" ml="4.75%" spacing={4} align="start" p={5}>
-      <Text fontSize="4xl"  mt="3%" fontWeight="bold">Transaction History</Text>
+      <Text color="#319795" fontSize="4xl"  mt="3%" fontWeight="bold">Transaction History</Text>
       {Object.keys(groupedTransactions).map(monthYear => (
         <Box mb="6%" key={monthYear} width="100%">
           <Text fontSize="xl" mb={4}>{monthYear}</Text>
-          <TableContainer>
-            <Table variant="simple">
+          <Center>
+          <TableContainer width="80%" >
+            <Table variant="simple" >
               <Thead>
                 <Tr>
                   <Th>Item</Th>
@@ -67,9 +68,12 @@ const History = () => {
               </Tbody>
             </Table>
           </TableContainer>
+          </Center>
         </Box>
       ))}
     </VStack>
+    
+    
   );
 };
 
