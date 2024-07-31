@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const TransactionModel = require("./models/Transactions");
 const cors = require('cors');
 
-MONGODB_URI = "write your connection string here";
+const MONGODB_URI = "write your connection string here";
 
 const app = express();
 
