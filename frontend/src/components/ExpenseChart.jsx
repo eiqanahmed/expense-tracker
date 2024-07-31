@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import { Text, Input, Button, VStack, Box, Flex, TableContainer, Table, Thead, Th, Tr, Td, Tbody } from '@chakra-ui/react'
 
 const ExpenseChart = ({ data }) => {
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#76E4F7' ,'#0BC5EA' ,'#90cdf4', '#81E6D9', '#4FD1C5', '#319795', '#285E61'].reverse();
 
   let modifiedData = []
   data.forEach((p) => {
