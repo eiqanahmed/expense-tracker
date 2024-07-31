@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const TransactionModel = require("./models/Transactions");
 const cors = require('cors');
 
-const MONGODB_URI = "write your connection string here";
+const MONGODB_URI = "mongodb+srv://eiqanahmed:eiqan027@expensetracker.uzqhdwd.mongodb.net/expenses?retryWrites=true&w=majority&appName=ExpenseTracker";
 
 const app = express();
 

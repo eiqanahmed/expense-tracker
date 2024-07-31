@@ -14,13 +14,13 @@ const Navbar = () => {
     <Box bg={bg} px={4} boxShadow="sm" >
       <Flex h={16} alignItems="center" justifyContent="center">
         <HStack spacing={12} alignItems="center" mx="auto">
-          <Link as={RouterLink} to="/" px={2} py={1} width="11rem" rounded="md" _hover={{textDecoration: 'none', bg: '#4FD1C5' }}>
+          <Link fontWeight="bold" as={RouterLink} to="/" px={2} py={1} width="11rem" rounded="md" _hover={{textDecoration: 'none', bgGradient: 'linear(to-r, #4FD1C5, #81E6D9, #4299e1)' }}>
             Home
           </Link>
-          <Link as={RouterLink} width="11rem" to="/monthly-expenses" px={2} py={1} rounded="md" _hover={{textDecoration: 'none', bg: '#4FD1C5' }}>
+          <Link fontWeight="bold" as={RouterLink} width="11rem" to="/monthly-expenses" px={2} py={1} rounded="md" _hover={{textDecoration: 'none', bgGradient: 'linear(to-r, #4FD1C5, #81E6D9, #4299e1)' }}>
             Monthly Expenses
           </Link>
-          <Link as={RouterLink} width="11rem" to="/history" px={2} py={1} rounded="md" _hover={{textDecoration: 'none', bg: '#4FD1C5' }}>
+          <Link fontWeight="bold" as={RouterLink} width="11rem" to="/history" px={2} py={1} rounded="md" _hover={{textDecoration: 'none', bgGradient: 'linear(to-r, #4FD1C5, #81E6D9, #4299e1)' }}>
             Transaction History
           </Link>
         </HStack>
