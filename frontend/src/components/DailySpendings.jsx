@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, Input, Button, VStack, HStack, Box, Flex } from '@chakra-ui/react';
+import { Text, VStack, Box } from '@chakra-ui/react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 
 const DailySpendings = ({ data }) => {
   const currentDate = new Date();
   const monthIndex = currentDate.getMonth();
   const year = currentDate.getFullYear();
-  
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
   const getDaysInMonth = (month, year) => {
     return new Date(year, month + 1, 0).getDate();
   };
@@ -17,11 +22,13 @@ const DailySpendings = ({ data }) => {
   const transformData = (data) => {
     const dailyTotals = data.reduce((acc, item) => {
       const date = new Date(item.date);
-      const day = date.getDate();
-      if (!acc[day]) {
-        acc[day] = 0;
+      if (date.getMonth() === monthIndex && date.getFullYear() === year) {
+        const day = date.getDate();
+        if (!acc[day]) {
+          acc[day] = 0;
+        }
+        acc[day] -= item.value;
       }
-      acc[day] -= item.value;
       return acc;
     }, {});
 
@@ -31,16 +38,7 @@ const DailySpendings = ({ data }) => {
     }));
   };
 
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  let expensesData = [];
-  data.forEach(p => {
-    if (p.value < 0) {
-      expensesData.push(p);
-    }
-  })
+  const expensesData = data.filter(p => p.value < 0);
 
   const currentMonth = monthNames[monthIndex];
   const transformedData = transformData(expensesData);
@@ -54,29 +52,30 @@ const DailySpendings = ({ data }) => {
 
   const currs = currTransactions(data);
 
-  let total = 0;
-  currs.forEach(transaction => {
+  const total = currs.reduce((sum, transaction) => {
     if (transaction.value < 0) {
-    total -= Number(transaction.value);
+      return sum - Number(transaction.value);
     }
-  });
+    return sum;
+  }, 0);
 
   const day = currentDate.getDate();
-  let average1 = total / Number(day);
-  let average = average1.toFixed(2);
+  const average = (total / day).toFixed(2);
 
   return (
-    <>
+    <VStack>
       <Text mb="2%">On average, your daily expenses have been ${average} in {currentMonth} so far.</Text>
-      <BarChart width={600} height={300} data={transformedData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Expenses" fill="#38B2AC" />
-      </BarChart>
-    </>
+      <Box>
+        <BarChart width={600} height={300} data={transformedData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="Expenses" fill="#38B2AC" />
+        </BarChart>
+      </Box>
+    </VStack>
   );
 }
 

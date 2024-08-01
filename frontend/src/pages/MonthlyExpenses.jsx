@@ -11,6 +11,10 @@ const MonthlyExpenses = () => {
 
   const [transactions, setTransactions] = useState([]);
 
+  const currentDate = new Date();
+  const monthIndex = currentDate.getMonth();
+  const year = currentDate.getFullYear();
+
   const fetchTransactions = () => {
     axios.get("http://localhost:3001/getTransactions")
       .then(response => {
@@ -27,15 +31,16 @@ const MonthlyExpenses = () => {
   let expensesTotal = 0;
   let revenueTotal = 0;
   transactions.forEach((transaction) => {
+    const date = new Date(transaction.date);
+    if (date.getMonth() === monthIndex && date.getFullYear() === year) {
     if (transaction.value < 0) {
       expensesTotal -= transaction.value;
     } else {
       revenueTotal += transaction.value;
     }
+  }
   })
 
-
-  const currentDate = new Date();
 
   // Array of month names
   const monthNames = [
@@ -50,6 +55,7 @@ const MonthlyExpenses = () => {
   const currentMonth = monthNames[currentMonthIndex];
 
   // border="2px solid black"
+
 
   return (
     <>
@@ -76,16 +82,18 @@ const MonthlyExpenses = () => {
           </VStack>
         </HStack>
       </Box>
-      <Box mt="-1%">
+      <Box position="sticky" mt="4%">
         <AddTransaction fetchTransactions={fetchTransactions} />
-        <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
-        <Box align="center" ml="65%" mt="-69%">
-          <Text mb="-3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
+        <Box align="center" ml="65%" mt="-40%">
+          <Text mb="3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
           <ExpenseChart data={transactions}/>
         </Box>
-        <Box mt="7%" mb="5%" align="center" ml="65%">
+        <Box mt="7%" mb="5%" align="center" ml="65%" >
           <Text mb="-3%" fontSize="1.25rem"> Your total revenues for {currentMonth} are: ${revenueTotal.toFixed(2)}</Text>
           <RevenueChart data={transactions} />
+        </Box>
+        <Box mt="-26.5%">
+        <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
         </Box>
       </Box>
       
