@@ -2,13 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const TransactionModel = require("./models/Transactions");
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
 app.use(express.json())
 app.use(cors());
 
-mongoose.connect(`${process.env.MONGODB_URI}`);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.get("/getTransactions", (req, res) => {
     TransactionModel.find({}).then(function(transactions) {

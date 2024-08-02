@@ -11,7 +11,7 @@ const Home = () => {
   const [transactions, setTransactions] = useState([]);
 
   const fetchTransactions = () => {
-    axios.get(`${process.env.CREATE_REACT_APP_BACKEND_BASEURL}/getTransactions`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/getTransactions`)
       .then(response => {
         setTransactions(response.data);
       })

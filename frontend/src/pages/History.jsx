@@ -31,7 +31,7 @@ const History = () => {
   const [groupedTransactions, setGroupedTransactions] = useState({});
 
   useEffect(() => {
-    axios.get(`${process.env.CREATE_REACT_APP_BACKEND_BASEURL}/getTransactions`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/getTransactions`)
       .then(response => {
         setTransactions(response.data);
         setGroupedTransactions(groupTransactionsByMonthAndYear(response.data));
