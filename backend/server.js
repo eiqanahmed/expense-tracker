@@ -13,6 +13,11 @@ app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI);
 
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the Expense Tracker API');
+});
+
 app.get("/getTransactions", (req, res) => {
     TransactionModel.find({}).then(function(transactions) {
         res.json(transactions);
