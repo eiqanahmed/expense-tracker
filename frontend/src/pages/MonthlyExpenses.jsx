@@ -16,7 +16,7 @@ const MonthlyExpenses = () => {
   const year = currentDate.getFullYear();
 
   const fetchTransactions = () => {
-    axios.get(`${import.meta.env.CREATE_REACT_APP_BACKEND_BASEURL}/getTransactions`)
+    axios.get(`${process.env.CREATE_REACT_APP_BACKEND_BASEURL}/getTransactions`)
       .then(response => {
         setTransactions(response.data);
       })

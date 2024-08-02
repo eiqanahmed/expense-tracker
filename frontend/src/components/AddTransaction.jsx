@@ -23,7 +23,7 @@ const AddTransaction = ({ fetchTransactions }) => {
     }
 
 
-    axios.post(`${import.meta.env.CREATE_REACT_APP_BACKEND_BASEURL}/createTransaction`, { item, value, date, category })
+    axios.post(`${process.env.CREATE_REACT_APP_BACKEND_BASEURL}/createTransaction`, { item, value, date, category })
     .then((transaction) => {
       console.log(transaction);
       fetchTransactions();

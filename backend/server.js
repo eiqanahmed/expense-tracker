@@ -3,14 +3,12 @@ const mongoose = require('mongoose');
 const TransactionModel = require("./models/Transactions");
 const cors = require('cors');
 
-const MONGODB_URI = "mongodb+srv://eiqanahmed:eiqan027@expensetracker.uzqhdwd.mongodb.net/expenses?retryWrites=true&w=majority&appName=ExpenseTracker";
-
 const app = express();
 
 app.use(express.json())
 app.use(cors());
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(`${process.env.MONGODB_URI}`);
 
 app.get("/getTransactions", (req, res) => {
     TransactionModel.find({}).then(function(transactions) {

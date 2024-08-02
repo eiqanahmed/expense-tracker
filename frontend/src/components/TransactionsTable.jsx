@@ -57,7 +57,7 @@ const TransactionsTable = ({ transactions, fetchTransactions }) => {
 
   const del = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.CREATE_REACT_APP_BACKEND_BASEURL}/deleteTransaction/${id}`);
+      await axios.delete(`${process.env.CREATE_REACT_APP_BACKEND_BASEURL}/deleteTransaction/${id}`);
       fetchTransactions();
     } catch (err) {
       console.error('Error deleting transaction:', err);
