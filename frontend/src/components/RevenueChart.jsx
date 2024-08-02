@@ -1,6 +1,7 @@
 // src/components/ExpensePieChart.jsx
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { Text, Input, Button, VStack, HStack, Box } from '@chakra-ui/react'
 
 const RevenueChart = ({ data }) => {
   const COLORS = ['#76E4F7' ,'#0BC5EA' ,'#90cdf4', '#81E6D9', '#4FD1C5', '#319795', '#285E61'].reverse();
@@ -49,7 +50,7 @@ const RevenueChart = ({ data }) => {
         ))}
       </Pie>
       <Tooltip />
-      <Legend />
+      <Legend layout="vertical" verticalAlign="bottom" align="center"/>
     </PieChart>
   );
 };

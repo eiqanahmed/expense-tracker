@@ -23,7 +23,7 @@ const AddTransaction = ({ fetchTransactions }) => {
     }
 
 
-    axios.post("http://localhost:3001/createTransaction", { item, value, date, category })
+    axios.post(`${import.meta.env.CREATE_REACT_APP_BACKEND_BASEURL}/createTransaction`, { item, value, date, category })
     .then((transaction) => {
       console.log(transaction);
       fetchTransactions();
@@ -36,9 +36,9 @@ const AddTransaction = ({ fetchTransactions }) => {
   return (
     <>
         <VStack mt="4rem" alignItems="flex-start" justifyContent='center' width='70%' spacing={6}>
-          <HStack ml="10%">
+          <HStack ml="9.55%">
             <Text ml="4%" fontSize='1xl'>Item: </Text>
-            <Input ml='7.5%' placeholder='Book' size='md' width="12.85rem" onChange={(e) => setItem(e.target.value)}/>
+            <Input ml='7.5%' placeholder='Book' size='md' width="13.5rem" onChange={(e) => setItem(e.target.value)}/>
           </HStack>
           <HStack ml="10%">
             <Text fontSize='1xl'>Value($):</Text>

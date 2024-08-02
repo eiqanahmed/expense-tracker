@@ -16,7 +16,7 @@ const MonthlyExpenses = () => {
   const year = currentDate.getFullYear();
 
   const fetchTransactions = () => {
-    axios.get("http://localhost:3001/getTransactions")
+    axios.get(`${import.meta.env.CREATE_REACT_APP_BACKEND_BASEURL}/getTransactions`)
       .then(response => {
         setTransactions(response.data);
       })
@@ -85,14 +85,14 @@ const MonthlyExpenses = () => {
       <Box position="sticky" mt="4%">
         <AddTransaction fetchTransactions={fetchTransactions} />
         <Box align="center" ml="65%" mt="-40%">
-          <Text mb="3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
+          <Text mb="-3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
           <ExpenseChart data={transactions}/>
         </Box>
         <Box mt="7%" mb="5%" align="center" ml="65%" >
           <Text mb="-3%" fontSize="1.25rem"> Your total revenues for {currentMonth} are: ${revenueTotal.toFixed(2)}</Text>
           <RevenueChart data={transactions} />
         </Box>
-        <Box mt="-26.5%">
+        <Box mt="-24%">
         <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
         </Box>
       </Box>

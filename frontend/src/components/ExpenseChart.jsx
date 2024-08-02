@@ -32,7 +32,7 @@ const ExpenseChart = ({ data }) => {
 
   return (
     <Box>
-      <PieChart width={400} height={400}>
+      <PieChart width={400} height={400} margin={{ bottom: -20 }}>
         <Pie
           data={transformedData}
           cx={200}
@@ -48,7 +48,8 @@ const ExpenseChart = ({ data }) => {
           ))}
         </Pie>
         <Tooltip />
-        <Legend />
+        <Legend  />
+      <Legend layout="vertical" verticalAlign="bottom" align="center"/>
       </PieChart>
     </Box>
   );
