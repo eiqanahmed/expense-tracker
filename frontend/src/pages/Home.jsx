@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <>
-      <Box mt="2rem" mb="2rem">
+      <Box mt="10rem" mb="2rem">
         <WelcomeMessage transactions={transactions} />
       </Box>
       <Box align="center" mt="6rem" mb="5rem">
