@@ -27,10 +27,10 @@ const Home = () => {
 
   return (
     <>
-      <Box mt="8%">
+      <Box mt="2rem" mb="2rem">
         <WelcomeMessage transactions={transactions} />
       </Box>
-      <Box align="center" mt="7%" mb="5%">
+      <Box align="center" mt="6rem" mb="5rem">
         <DailySpendings data={transactions} />
       </Box>
     </>
