@@ -35,24 +35,21 @@ const AddTransaction = ({ fetchTransactions }) => {
 
   return (
     <>
-        <VStack mt="4rem" alignItems="flex-start" justifyContent='center' width='70%' spacing={6}>
-          <HStack ml="8%" width="40%">
-            <Text ml="2rem" fontSize='1xl'>Item: </Text>
-            <Input ml='0.9rem' placeholder='Book' size='md' width="46%" onChange={(e) => setItem(e.target.value)}/>
-          </HStack>
-          <HStack ml="10%">
-            <Text fontSize='1xl'>Value($):</Text>
-            <Input placeholder='-20' size='md' width="65%" onChange={(e) => setValue(e.target.value)}/>
-          </HStack>
-          <HStack ml="9.4%">
-            <Text fontSize="1xl">Category:</Text>
-            <Input placeholder='other' size='md' width="64%" onChange={(e) => setCategory(e.target.value)}/>
-          </HStack>
-          <Button ml="12rem" onClick={Submit} colorScheme='teal' variant='solid'>
+        <HStack mt="4%" spacing="0%">
+          <VStack ml="4.8%" spacing="2.7rem" align="center" width="8%">
+            <Text ml="2%" fontSize='1xl'>Item: </Text>
+            <Text ml="2%" fontSize='1xl'>Value($):</Text>
+            <Text ml="2%" fontSize='1xl'>Item: </Text>
+          </VStack>
+          <VStack spacing="1.25rem" align="flex-start">
+            <Input placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
+            <Input placeholder='-20' size='md' onChange={(e) => setValue(e.target.value)}/>
+            <Input placeholder='other' size='md' onChange={(e) => setCategory(e.target.value)}/>
+          </VStack>
+        </HStack>
+        <Button mt="1.25rem" onClick={Submit} colorScheme='teal' variant='solid'  ml="-53.75rem">
               Add Transaction
           </Button>
-        </VStack>
-      
     </>
   )
 }
