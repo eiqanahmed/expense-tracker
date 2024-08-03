@@ -82,9 +82,9 @@ const MonthlyExpenses = () => {
           </VStack>
         </HStack>
       </Box>
-      <Box position="sticky" mt="4%">
+      <Box position="sticky" mt="2rem">
         <AddTransaction fetchTransactions={fetchTransactions} />
-        <Box align="center" ml="65%" mt="-40%">
+        <Box align="center" ml="65%" mt="-35rem">
           <Text mb="-3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
           <ExpenseChart data={transactions}/>
         </Box>
