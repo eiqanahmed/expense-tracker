@@ -36,10 +36,10 @@ const AddTransaction = ({ fetchTransactions }) => {
   return (
     <>
         <HStack mt="4%" spacing="0%">
-          <VStack ml="4.8%" spacing="2.7rem" align="center" width="8%">
+          <VStack ml="4.8%" spacing="2.5rem" align="center" width="8%">
             <Text ml="2%" fontSize='1xl'>Item: </Text>
             <Text ml="2%" fontSize='1xl'>Value($):</Text>
-            <Text ml="2%" fontSize='1xl'>Item: </Text>
+            <Text ml="2%" fontSize='1xl'>Category:</Text>
           </VStack>
           <VStack spacing="1.25rem" align="flex-start">
             <Input placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
