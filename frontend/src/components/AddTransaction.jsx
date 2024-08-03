@@ -47,7 +47,7 @@ const AddTransaction = ({ fetchTransactions }) => {
             <Input placeholder='other' size='md' onChange={(e) => setCategory(e.target.value)}/>
           </VStack>
         </HStack>
-        <Button mt="1.25rem" onClick={Submit} colorScheme='teal' variant='solid'  ml="-53.75rem">
+        <Button mt="1.25rem" onClick={Submit} colorScheme='teal' variant='solid'  ml="-60%">
               Add Transaction
           </Button>
     </>
