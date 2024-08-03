@@ -35,9 +35,9 @@ const AddTransaction = ({ fetchTransactions }) => {
 
   return (
     <>
-         <VStack align="flex-start" mt="5%" border="2px solid black" width="30%">
+         <VStack align="flex-start" mt="5%" width="25%">
           <HStack ml="20%">
-            <VStack spacing="2.5rem" align="center" >
+            <VStack mt="-22%" spacing="2.3rem" align="center">
               <Text ml="2%" fontSize='1xl'>Item: </Text>
               <Text ml="2%" fontSize='1xl'>Value($):</Text>
               <Text ml="2%" fontSize='1xl'>Category:</Text>
@@ -46,11 +46,11 @@ const AddTransaction = ({ fetchTransactions }) => {
             <Input placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
             <Input placeholder='-20' size='md' onChange={(e) => setValue(e.target.value)}/>
             <Input placeholder='other' size='md' onChange={(e) => setCategory(e.target.value)}/>
-          </VStack>
-          </HStack>
-          <Button alignSelf="center"mt="0.8rem" onClick={Submit} colorScheme='teal' variant='solid' ml="26.5%">
+            <Button alignSelf="center" onClick={Submit} colorScheme='teal' variant='solid' >
               Add Transaction
           </Button>
+          </VStack>
+          </HStack>
         </VStack>
     </>
   )
