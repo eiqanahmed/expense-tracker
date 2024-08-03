@@ -50,6 +50,7 @@ const RevenueChart = ({ data }) => {
         ))}
       </Pie>
       <Tooltip />
+      <Legend />
       <Legend layout="vertical" verticalAlign="bottom" align="center"/>
     </PieChart>
   );
