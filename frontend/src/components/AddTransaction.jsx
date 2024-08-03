@@ -35,21 +35,23 @@ const AddTransaction = ({ fetchTransactions }) => {
 
   return (
     <>
-        <HStack mt="4%" spacing="0%">
-          <VStack ml="4.8%" spacing="2.5rem" align="center" width="8%">
-            <Text ml="2%" fontSize='1xl'>Item: </Text>
-            <Text ml="2%" fontSize='1xl'>Value($):</Text>
-            <Text ml="2%" fontSize='1xl'>Category:</Text>
-          </VStack>
-          <VStack spacing="1.25rem" align="flex-start">
+         <VStack align="flex-start" mt="5%">
+          <HStack ml="6%">
+            <VStack spacing="2.5rem" align="center" >
+              <Text ml="2%" fontSize='1xl'>Item: </Text>
+              <Text ml="2%" fontSize='1xl'>Value($):</Text>
+              <Text ml="2%" fontSize='1xl'>Category:</Text>
+            </VStack>
+            <VStack spacing="1.25rem" align="flex-start">
             <Input placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
             <Input placeholder='-20' size='md' onChange={(e) => setValue(e.target.value)}/>
             <Input placeholder='other' size='md' onChange={(e) => setCategory(e.target.value)}/>
           </VStack>
-        </HStack>
-        <Button mt="1.25rem" onClick={Submit} colorScheme='teal' variant='solid'  ml="-60%">
+          </HStack>
+          <Button mt="0.8rem" onClick={Submit} colorScheme='teal' variant='solid' ml="13.5%">
               Add Transaction
           </Button>
+        </VStack>
     </>
   )
 }
