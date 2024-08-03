@@ -35,8 +35,8 @@ const AddTransaction = ({ fetchTransactions }) => {
 
   return (
     <>
-         <VStack align="flex-start" mt="5%">
-          <HStack ml="6%">
+         <VStack align="flex-start" mt="5%" border="2px solid black" width="30%">
+          <HStack ml="20%">
             <VStack spacing="2.5rem" align="center" >
               <Text ml="2%" fontSize='1xl'>Item: </Text>
               <Text ml="2%" fontSize='1xl'>Value($):</Text>
@@ -48,7 +48,7 @@ const AddTransaction = ({ fetchTransactions }) => {
             <Input placeholder='other' size='md' onChange={(e) => setCategory(e.target.value)}/>
           </VStack>
           </HStack>
-          <Button mt="0.8rem" onClick={Submit} colorScheme='teal' variant='solid' ml="13.5%">
+          <Button alignSelf="center"mt="0.8rem" onClick={Submit} colorScheme='teal' variant='solid' ml="26.5%">
               Add Transaction
           </Button>
         </VStack>
