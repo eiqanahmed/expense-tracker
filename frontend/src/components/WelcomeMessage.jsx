@@ -41,7 +41,7 @@ const WelcomeMessage = ({ transactions }) => {
 
   return (
     <>
-      <Text color="black" marginTop="12%" fontSize="4xl" fontWeight="bold">Welcome to your Expense Tracker! </Text>
+      <Text color="black" fontSize="4xl" fontWeight="bold">Welcome to your Expense Tracker! </Text>
         <HStack justifyContent="center" alignItems="center">
           <Text color="black" fontSize="1.25rem">Your total savings in {currentMonth} so far are: </Text>
           <Text fontWeight="bold" fontSize="1.25rem" color="#1D4044">${total}</Text>
