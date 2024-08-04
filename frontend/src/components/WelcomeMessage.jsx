@@ -41,12 +41,13 @@ const WelcomeMessage = ({ transactions }) => {
 
   return (
     <>
-      <Text color="black" fontSize="4xl" fontWeight="bold">Welcome to your Expense Tracker! </Text>
+      <VStack bgGradient="linear(to-r, #4FD1C5, #81E6D9, #4299e1)" alignItems="center" mt="10%" height="10rem" justifyContent="center">
+        <Text color="black" fontSize="4xl" fontWeight="bold">Welcome to your Expense Tracker! </Text>
         <HStack justifyContent="center" alignItems="center">
           <Text color="black" fontSize="1.25rem">Your total savings in {currentMonth} so far are: </Text>
           <Text fontWeight="bold" fontSize="1.25rem" color="#1D4044">${total}</Text>
         </HStack>
-        <Box mt="-8%" bgGradient="linear(to-r, #4FD1C5, #81E6D9, #4299e1)" height="10rem"></Box>
+      </VStack>
     </>
   )
 }
