@@ -67,7 +67,6 @@ const DailySpendings = ({ data }) => {
       <Text mb="2%">On average, your daily expenses have been ${average} in {currentMonth} so far.</Text>
       <Box>
         <BarChart width={600} height={300} data={transformedData}>
-          <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
