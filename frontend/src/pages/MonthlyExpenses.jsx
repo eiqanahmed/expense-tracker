@@ -1,106 +1,145 @@
-import React from 'react';
-import AddTransaction from "../components/AddTransaction";
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Text, Input, Button, HStack, VStack, Box, List, ListItem, ListIcon, OrderedList, UnorderedList } from '@chakra-ui/react'
-import TransactionsTable from '../components/TransactionsTable';
-import ExpenseChart from '../components/ExpenseChart';
-import RevenueChart from '../components/RevenueChart';
+"use client"
+
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { Box, Container, Heading, Grid, GridItem, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react"
+import { FaChartPie, FaMoneyBillWave, FaListAlt, FaPlusCircle } from "react-icons/fa"
+import ExpenseChart from "../components/ExpenseChart"
+import RevenueChart from "../components/RevenueChart"
+import TransactionsTable from "../components/TransactionsTable"
+import AddTransaction from "../components/AddTransaction"
 
 const MonthlyExpenses = () => {
-
-  const [transactions, setTransactions] = useState([]);
-
-  const currentDate = new Date();
-  const monthIndex = currentDate.getMonth();
-  const year = currentDate.getFullYear();
+  const [transactions, setTransactions] = useState([])
+  const bgColor = useColorModeValue("gray.50", "gray.900")
+  const cardBg = useColorModeValue("white", "gray.800")
 
   const fetchTransactions = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/getTransactions`)
-      .then(response => {
-        setTransactions(response.data);
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/getTransactions`)
+      .then((response) => {
+        setTransactions(response.data)
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err))
   }
 
   // Fetch data when the component mounts
   useEffect(() => {
-    fetchTransactions();
-  }, []);
+    fetchTransactions()
+  }, [])
 
-  let expensesTotal = 0;
-  let revenueTotal = 0;
-  transactions.forEach((transaction) => {
-    const date = new Date(transaction.date);
-    if (date.getMonth() === monthIndex && date.getFullYear() === year) {
-    if (transaction.value < 0) {
-      expensesTotal -= transaction.value;
-    } else {
-      revenueTotal += transaction.value;
-    }
-  }
-  })
-
-
-  // Array of month names
+  // Get current month name
+  const currentDate = new Date()
   const monthNames = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-  ];
-
-  // Get the current month index (0-11)
-  const currentMonthIndex = currentDate.getMonth();
-
-  // Get the name of the current month
-  const currentMonth = monthNames[currentMonthIndex];
-
-  // border="2px solid black"
-
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
+  const currentMonth = monthNames[currentDate.getMonth()]
+  const currentYear = currentDate.getFullYear()
 
   return (
-    <>
-      <Text color="#319795" fontSize="4xl" ml="6%" mt="3%" textAlign="left" fontWeight="bold">Monthly Expenses</Text>
-      <Box mt="3%" ml="6%" width="45%">
-        <Text mt="-2%" textAlign="left" fontSize="1xl">You can track your monthly expenses on this page. Use negative values to input expenses, and positive values to input revenues (e.g. income). Be sure to enter a valid category; all valid categories are listed below. </Text>
-        <HStack mt="3%" align="left">
-          <VStack align="left">
-            <Text textAlign="left">Expenses:</Text>
-            <UnorderedList align="left">
-              <ListItem>Housing</ListItem>
-              <ListItem>Food</ListItem>
-              <ListItem>Transportation</ListItem>
-              <ListItem>Medical</ListItem>
-              <ListItem>Other</ListItem>
-            </UnorderedList>
-          </VStack>
-          <VStack ml="20%" align="left">
-            <Text textAlign="left">Revenues:</Text>
-            <UnorderedList align="left">
-              <ListItem>Income</ListItem>
-              <ListItem>Other</ListItem>
-            </UnorderedList>
-          </VStack>
-        </HStack>
-      </Box>
-      <Box position="sticky">
-        <AddTransaction fetchTransactions={fetchTransactions} />
-        <Box align="center" ml="65%" mt="-35rem">
-          <Text mb="-3%" fontSize="1.25rem">Your total expenses for {currentMonth} are: ${expensesTotal.toFixed(2)}</Text>
-          <ExpenseChart data={transactions}/>
-        </Box>
-        <Box mt="7%" mb="5%" align="center" ml="65%" >
-          <Text mb="-3%" fontSize="1.25rem"> Your total revenues for {currentMonth} are: ${revenueTotal.toFixed(2)}</Text>
-          <RevenueChart data={transactions} />
-        </Box>
-        <Box mt="-22.5rem">
-        <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
-        </Box>
-      </Box>
-      
+    <Box bg={bgColor} minH="100vh" py={8}>
+      <Container maxW="container.xl">
+        <Flex direction="column" gap={6}>
+          <Flex align="center" mb={2}>
+            <Icon as={FaMoneyBillWave} w={8} h={8} color="teal.500" mr={3} />
+            <Heading size="lg" color="teal.700">
+              Monthly Expenses
+            </Heading>
+          </Flex>
 
-      
-    </>
+          <Box bg={cardBg} p={6} borderRadius="xl" boxShadow="md" borderTop="4px solid" borderColor="teal.400">
+            <Flex
+              justify="space-between"
+              align="center"
+              mb={4}
+              direction={{ base: "column", sm: "row" }}
+              gap={{ base: 2, sm: 0 }}
+            >
+              <Heading size="md" color="teal.700">
+                Financial Overview: {currentMonth} {currentYear}
+              </Heading>
+              <Text bg="teal.50" color="teal.700" px={3} py={1} borderRadius="md" fontWeight="medium">
+                {new Date().toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </Text>
+            </Flex>
+
+            <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={8} mb={8}>
+              <GridItem>
+                <Box bg="teal.50" p={4} borderRadius="lg" boxShadow="sm" height="100%">
+                  <Flex align="center" mb={4}>
+                    <Icon as={FaChartPie} color="red.500" mr={2} />
+                    <Text fontWeight="bold" color="teal.700">
+                      Expense Breakdown
+                    </Text>
+                  </Flex>
+                  <Box display="flex" justifyContent="center">
+                    <ExpenseChart data={transactions} />
+                  </Box>
+                </Box>
+              </GridItem>
+
+              <GridItem>
+                <Box bg="teal.50" p={4} borderRadius="lg" boxShadow="sm" height="100%">
+                  <Flex align="center" mb={4}>
+                    <Icon as={FaChartPie} color="green.500" mr={2} />
+                    <Text fontWeight="bold" color="teal.700">
+                      Income Breakdown
+                    </Text>
+                  </Flex>
+                  <Box display="flex" justifyContent="center">
+                    <RevenueChart data={transactions} />
+                  </Box>
+                </Box>
+              </GridItem>
+            </Grid>
+
+            <Grid templateColumns={{ base: "1fr", xl: "3fr 1fr" }} gap={6}>
+              <GridItem>
+                <Box bg={cardBg} p={4} borderRadius="lg" boxShadow="sm" border="1px" borderColor="gray.200">
+                  <Flex align="center" mb={4}>
+                    <Icon as={FaListAlt} color="teal.500" mr={2} />
+                    <Text fontWeight="bold" color="teal.700">
+                      Transactions for {currentMonth}
+                    </Text>
+                  </Flex>
+                  <TransactionsTable transactions={transactions} fetchTransactions={fetchTransactions} />
+                </Box>
+              </GridItem>
+
+              <GridItem>
+                <Box bg={cardBg} p={6} borderRadius="lg" boxShadow="sm" border="1px" borderColor="gray.200">
+                  <Flex align="center" mb={4}>
+                    <Icon as={FaPlusCircle} color="teal.500" mr={2} />
+                    <Text fontWeight="bold" color="teal.700">
+                      Add New Transaction
+                    </Text>
+                  </Flex>
+                  <AddTransaction fetchTransactions={fetchTransactions} />
+                </Box>
+              </GridItem>
+            </Grid>
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
   )
 }
 
 export default MonthlyExpenses
+
