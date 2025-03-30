@@ -81,30 +81,26 @@ const MonthlyExpenses = () => {
 
             <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={8} mb={8}>
               <GridItem>
-                <Box bg="teal.50" p={4} borderRadius="lg" boxShadow="sm" height="100%">
+                <Box bg="teal.50" p={4} borderRadius="lg" boxShadow="sm" height="100%" minH="450px">
                   <Flex align="center" mb={4}>
                     <Icon as={FaChartPie} color="red.500" mr={2} />
                     <Text fontWeight="bold" color="teal.700">
                       Expense Breakdown
                     </Text>
                   </Flex>
-                  <Box display="flex" justifyContent="center">
-                    <ExpenseChart data={transactions} />
-                  </Box>
+                  <ExpenseChart data={transactions} />
                 </Box>
               </GridItem>
 
               <GridItem>
-                <Box bg="teal.50" p={4} borderRadius="lg" boxShadow="sm" height="100%">
+                <Box bg="teal.50" p={4} borderRadius="lg" boxShadow="sm" height="100%" minH="450px">
                   <Flex align="center" mb={4}>
                     <Icon as={FaChartPie} color="green.500" mr={2} />
                     <Text fontWeight="bold" color="teal.700">
                       Income Breakdown
                     </Text>
                   </Flex>
-                  <Box display="flex" justifyContent="center">
-                    <RevenueChart data={transactions} />
-                  </Box>
+                  <RevenueChart data={transactions} />
                 </Box>
               </GridItem>
             </Grid>
