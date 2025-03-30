@@ -1,59 +1,138 @@
-import React from 'react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Text, Input, Button, VStack, HStack, Box } from '@chakra-ui/react'
+"use client"
+
+import { useState } from "react"
+import axios from "axios"
+import {
+  Input,
+  Button,
+  VStack,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  FormErrorMessage,
+  Select,
+  InputGroup,
+  InputLeftElement,
+  Box,
+  useToast,
+} from "@chakra-ui/react"
 
 const AddTransaction = ({ fetchTransactions }) => {
-  
-  const [item, setItem] = useState();
-  const [value, setValue] = useState();
-  const [category, setCategory] = useState('');
+  const [item, setItem] = useState("")
+  const [value, setValue] = useState("")
+  const [category, setCategory] = useState("")
+  const [errors, setErrors] = useState({})
+  const toast = useToast()
 
-  // Display data from database since the beginning of the current month
+  // Validate form
+  const validateForm = () => {
+    const newErrors = {}
 
-  const date = new Date();
-
-  const Submit = () => {
-
-    let arr = ['HOUSING', 'UTILITIES', 'FOOD', 'TRANSPORTATION', 'MEDICAL', 'OTHER', 'INCOME'];
-
-    if (!arr.includes(category.toUpperCase())) {
-      alert('Please enter a valid category!');
-      return;
+    if (!item || item.trim() === "") {
+      newErrors.item = "Item name is required"
     }
 
+    if (!value || isNaN(Number(value))) {
+      newErrors.value = "Please enter a valid number"
+    }
 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/createTransaction`, { item, value, date, category })
-    .then((transaction) => {
-      console.log(transaction);
-      fetchTransactions();
-    }).catch(err => console.log(err));
+    if (!category) {
+      newErrors.category = "Please select a category"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
-    
-  // border="2px solid black"
+  // Handle form submission
+  const handleSubmit = () => {
+    if (validateForm()) {
+      const date = new Date()
+
+      axios
+        .post(`${process.env.REACT_APP_BACKEND_URL}/createTransaction`, {
+          item,
+          value: Number(value),
+          date,
+          category,
+        })
+        .then(() => {
+          // Reset form
+          setItem("")
+          setValue("")
+          setCategory("")
+
+          // Refresh transactions
+          fetchTransactions()
+
+          // Show success toast
+          toast({
+            title: "Transaction added",
+            description: `${item} has been added successfully.`,
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+          toast({
+            title: "Error",
+            description: "Failed to add transaction.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          })
+        })
+    }
+  }
 
   return (
-    <>
-         <VStack align="flex-start" mt="5%" width="25%">
-          <HStack ml="20%">
-            <VStack mt="-22%" spacing="2.3rem" align="center">
-              <Text ml="2%" fontSize='1xl'>Item: </Text>
-              <Text ml="2%" fontSize='1xl'>Value($):</Text>
-              <Text ml="2%" fontSize='1xl'>Category:</Text>
-            </VStack>
-            <VStack spacing="1.25rem" align="flex-start">
-            <Input placeholder='Book' size='md' onChange={(e) => setItem(e.target.value)}/>
-            <Input placeholder='-20' size='md' onChange={(e) => setValue(e.target.value)}/>
-            <Input placeholder='other' size='md' onChange={(e) => setCategory(e.target.value)}/>
-            <Button alignSelf="center" onClick={Submit} colorScheme='teal' variant='solid' >
-              Add Transaction
-          </Button>
-          </VStack>
-          </HStack>
-        </VStack>
-    </>
+    <VStack spacing={4} align="stretch">
+      <FormControl isInvalid={!!errors.item}>
+        <FormLabel fontSize="sm">Item Name</FormLabel>
+        <Input placeholder="e.g., Groceries" value={item} onChange={(e) => setItem(e.target.value)} />
+        {errors.item && <FormErrorMessage>{errors.item}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl isInvalid={!!errors.value}>
+        <FormLabel fontSize="sm">Amount</FormLabel>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">$</InputLeftElement>
+          <Input
+            placeholder="e.g., -20 for expense, 100 for income"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </InputGroup>
+        <FormHelperText>Use negative values for expenses, positive for income</FormHelperText>
+        {errors.value && <FormErrorMessage>{errors.value}</FormErrorMessage>}
+      </FormControl>
+
+      <FormControl isInvalid={!!errors.category}>
+        <FormLabel fontSize="sm">Category</FormLabel>
+        <Select placeholder="Select category" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="HOUSING">Housing</option>
+          <option value="UTILITIES">Utilities</option>
+          <option value="FOOD">Food</option>
+          <option value="TRANSPORTATION">Transportation</option>
+          <option value="MEDICAL">Medical</option>
+          <option value="INCOME">Income</option>
+          <option value="OTHER">Other</option>
+        </Select>
+        {errors.category && <FormErrorMessage>{errors.category}</FormErrorMessage>}
+      </FormControl>
+
+      <Box pt={2}>
+        <Button onClick={handleSubmit} colorScheme="teal" width="full" size="md">
+          Add Transaction
+        </Button>
+      </Box>
+    </VStack>
   )
 }
 
 export default AddTransaction
+
