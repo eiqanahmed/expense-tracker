@@ -44,7 +44,7 @@ const WelcomeMessage = ({ transactions }) => {
     allTransactions.forEach((transaction) => {
       const curr = new Date()
       const d = new Date(transaction.date)
-      if (d.getMonth() === curr.getMonth()) {
+      if (d.getMonth() === curr.getMonth() && d.getFullYear() === curr.getFullYear()) {
         arr.push(transaction)
       }
     })
