@@ -8,6 +8,20 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  "https://expense-tracker-frontend-pi.vercel.app",
+  "http://localhost:3000",
+];
+
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    return cb(new Error("Not allowed by CORS"));
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
 app.use(express.json())
 app.use(cors());
 
